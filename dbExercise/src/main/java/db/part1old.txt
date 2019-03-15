@@ -1,0 +1,25 @@
+CREATE TABLE Child
+(
+cid integer PRIMARY KEY,
+name varchar(40) NOT NULL,
+address varchar(255) NOT NULL
+);
+CREATE TABLE SantasLittleHelper
+(
+slhid integer PRIMARY KEY,
+name varchar(40) NOT NULL
+);
+
+CREATE TABLE Gift
+(
+gid integer PRIMARY KEY,
+description varchar(255) NOT NULL
+);
+//cascade
+CREATE TABLE Present
+(
+gid integer REFERENCES Gift ON DELETE RESTRICT,
+cid integer REFERENCES Child ON DELETE RESTRICT,
+slhid integer REFERENCES SantasLittleHelper ON DELETE RESTRICT,
+PRIMARY KEY (gid, cid, shhid)
+);

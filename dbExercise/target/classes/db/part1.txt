@@ -1,0 +1,31 @@
+CREATE TABLE Cracker
+(
+cid 		integer  		PRIMARY KEY,
+name 		varchar(255) 	NOT NULL UNIQUE,
+jid 		integer			references Joke(jid) ON DELETE RESTRICT,
+gid			integer 		references Gift(gid) ON DELETE RESTRICT,
+hid			integer 		references Hat(hid) ON DELETE RESTRICT,
+salesprice 	numeric(8,2)	check(salesprice>0) NOT NULL UNIQUE,
+quantity 	numeric			check(quantity>=0)
+);
+
+CREATE TABLE Joke
+(
+jid 	integer 		PRIMARY KEY,
+joke 	varchar(255) 	NOT NULL UNIQUE,
+royalty numeric(8,2)	CHECK(royalty > 0)
+);
+
+CREATE TABLE Gift
+(
+gid 		integer 		PRIMARY KEY,
+description varchar(255) 	NOT NULL,
+price		numeric(8,2) 	check(price>0)
+);
+
+CREATE TABLE Hat
+(
+hid 		integer 			PRIMARY KEY,
+description varchar(255) 		NOT NULL,
+price 		numeric(8,2)		check(price>0)
+);
